@@ -2,11 +2,10 @@
 
 import pandas as pd
 from sqlalchemy import create_engine, text
+from config import DATABASE_URL
 
 # conexão com banco
-engine = create_engine(
-    "mysql+pymysql://looqbox-challenge:looq-challenge@35.199.115.174:3306/lookbox_challenge"
-)
+engine = create_engine(DATABASE_URL)
 
 # função principal
 def retrieve_data(product_code=None, store_code=None, date=None):

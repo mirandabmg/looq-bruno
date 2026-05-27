@@ -1,10 +1,9 @@
 import pandas as pd
 from sqlalchemy import create_engine, text
+from config import DATABASE_URL
 
 # conexão com banco
-engine = create_engine(
-    "mysql+pymysql://looqbox-challenge:looq-challenge@35.199.115.174:3306/looqbox_challenge"
-)
+engine = create_engine(DATABASE_URL)
 
 # query 1
 query_store = """
