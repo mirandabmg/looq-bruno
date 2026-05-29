@@ -1,5 +1,7 @@
 # Arquivos de ambiente e credenciais
 .env
+.env.*
+!.env.example
 .env.local
 .env.*.local
 
@@ -11,6 +13,7 @@ __pycache__/
 
 # Ambientes virtuais
 venv/
+.venv/
 env/
 ENV/
 env.bak/
@@ -25,3 +28,5 @@ venv.bak/
 # OS
 .DS_Store
 Thumbs.db
+
+*.png

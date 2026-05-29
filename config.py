@@ -1,15 +1,28 @@
 import os
 from dotenv import load_dotenv
+from sqlalchemy.engine import URL
 
-# Carrega variáveis de ambiente do arquivo .env
 load_dotenv()
 
-# Configurações do banco de dados MySQL
-DB_USER = os.getenv("DB_USER", "looqbox-challenge")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "looq-challenge")
-DB_HOST = os.getenv("DB_HOST", "35.199.115.174")
-DB_PORT = os.getenv("DB_PORT", "3306")
-DB_NAME = os.getenv("DB_NAME", "looqbox_challenge")
+required_vars = ["DB_USER", "DB_PASSWORD", "DB_HOST", "DB_NAME"]
+missing_vars = [var for var in required_vars if not os.getenv(var)]
 
-# String de conexão MySQL
-DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+if missing_vars:
+    raise EnvironmentError(
+        f"Missing required environment variables: {', '.join(missing_vars)}"
+    )
+
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT", "3306")
+DB_NAME = os.getenv("DB_NAME")
+
+DATABASE_URL = URL.create(
+    "mysql+pymysql",
+    username=DB_USER,
+    password=DB_PASSWORD,
+    host=DB_HOST,
+    port=int(DB_PORT),
+    database=DB_NAME,
+)
