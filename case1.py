@@ -1,4 +1,4 @@
-#obs: O ideal seria criar uma venv para separar e instalar as dependências, ou estruturar um projeto com todos os scripts utilizados, se este case fosse um projeto inteiro.
+
 
 import pandas as pd
 from sqlalchemy import create_engine, text
